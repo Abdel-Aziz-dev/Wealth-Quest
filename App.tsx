@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GameState, INITIAL_STATE, Currency, Language } from './types';
-import { advanceMonth, buyAsset, promoteJob, repayDebt, takeLoan } from './services/gameEngine';
+import { advanceMonth, buyAsset, promoteJob, repayDebt, takeLoan, formatCurrency } from './services/gameEngine';
 import { CURRENCIES, LANGUAGES } from './constants';
 import { Dashboard } from './components/Dashboard';
 import { Actions } from './components/Actions';
 import { Advisor } from './components/Advisor';
+import { Tutorial } from './components/Tutorial';
 import { t } from './services/i18n';
 
 const App: React.FC = () => {
@@ -15,6 +16,15 @@ const App: React.FC = () => {
   
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+
+  // Auto-start tutorial if not completed
+  useEffect(() => {
+    if (!gameState.tutorialCompleted) {
+       // Small delay for initial render
+       setTimeout(() => setShowTutorial(true), 500);
+    }
+  }, []);
 
   const handleAdvance = () => {
     // Pass currency so logs are generated in the correct currency
@@ -52,6 +62,35 @@ const App: React.FC = () => {
       });
   };
 
+  const completeTutorial = () => {
+      setShowTutorial(false);
+      setGameState(prev => {
+          // If already completed, just close (re-playing tutorial)
+          if (prev.tutorialCompleted) return prev;
+
+          // Reward logic: $500 Bonus
+          const bonus = 500;
+          // Simple log entry manually added here
+          const newLog = {
+              id: 'tut-bonus',
+              month: prev.age - 216,
+              message: t(language.code, 'tutorial.finish_desc'), // Reuse description as log message or create new key
+              type: 'EARNING' as const,
+              amount: bonus
+          };
+          
+          return {
+              ...prev,
+              tutorialCompleted: true,
+              cash: prev.cash + bonus,
+              history: {
+                  ...prev.history,
+                  logs: [newLog, ...prev.history.logs]
+              }
+          };
+      });
+  };
+
   return (
     <div className="min-h-screen bg-game-bg text-slate-200 font-sans pb-20 md:pb-0">
       {/* Top Bar */}
@@ -64,6 +103,7 @@ const App: React.FC = () => {
                 {/* Language Selector */}
                 <div className="relative ml-2 sm:ml-4 z-50">
                    <button 
+                    id="tutorial-lang-btn"
                     onClick={() => {
                         setIsLangOpen(!isLangOpen);
                         setIsCurrencyOpen(false);
@@ -100,6 +140,7 @@ const App: React.FC = () => {
                 {/* Currency Selector */}
                 <div className="relative z-50">
                   <button 
+                    id="tutorial-currency-btn"
                     onClick={() => {
                         setIsCurrencyOpen(!isCurrencyOpen);
                         setIsLangOpen(false);
@@ -132,6 +173,15 @@ const App: React.FC = () => {
                       </>
                   )}
                 </div>
+                
+                {/* Help/Tutorial Button */}
+                <button 
+                    onClick={() => setShowTutorial(true)}
+                    className="ml-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white w-9 h-9 rounded-xl border border-slate-700 flex items-center justify-center transition-all"
+                    title="Start Tutorial"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </button>
             </div>
             <button onClick={() => setShowLog(!showLog)} className="md:hidden text-slate-400">
                 {t(language.code, 'app.logs')}
@@ -179,6 +229,15 @@ const App: React.FC = () => {
       </main>
 
       <Advisor state={gameState} currency={currency} lang={language.code} />
+
+      {/* Tutorial Overlay */}
+      {showTutorial && (
+          <Tutorial 
+            lang={language.code} 
+            onComplete={completeTutorial} 
+            onClose={() => setShowTutorial(false)} 
+          />
+      )}
 
       {/* Mobile Log Drawer */}
       {showLog && (

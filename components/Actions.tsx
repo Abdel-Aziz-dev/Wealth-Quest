@@ -29,6 +29,8 @@ export const Actions: React.FC<Props> = ({ state, onBuyAsset, onPromote, onTrain
   // Returns { display: "¥10,000", valueUSD: 66.66 }
   const getSmartAmount = useMemo(() => {
       return (baseUSD: number) => {
+          if (!baseUSD) return { display: formatCurrency(0, currency), usdValue: 0, rawLocal: 0 };
+
           const raw = baseUSD * currency.rate;
           
           // Logic: Find order of magnitude, then snap to nearest 1, 2, 5, 10
@@ -50,7 +52,8 @@ export const Actions: React.FC<Props> = ({ state, onBuyAsset, onPromote, onTrain
               display: new Intl.NumberFormat(currency.locale, { 
                   style: 'currency', 
                   currency: currency.code, 
-                  maximumFractionDigits: 0 
+                  maximumFractionDigits: currency.decimals, 
+                  minimumFractionDigits: currency.decimals
               }).format(cleanAmount),
               usdValue: usdValue,
               rawLocal: cleanAmount
@@ -94,12 +97,13 @@ export const Actions: React.FC<Props> = ({ state, onBuyAsset, onPromote, onTrain
   const totalMonthlyPayment = state.debts.reduce((acc, d) => d.principal > 0 ? acc + Math.max(d.minPayment, d.principal * 0.025) : acc, 0);
 
   return (
-    <div className="bg-game-card rounded-xl border border-slate-700 shadow-lg h-full flex flex-col overflow-hidden">
+    <div id="tutorial-actions" className="bg-game-card rounded-xl border border-slate-700 shadow-lg h-full flex flex-col overflow-hidden">
       {/* Tabs */}
       <div className="flex border-b border-slate-700">
         {(['CAREER', 'DEBT', 'INVEST', 'SKILLS'] as const).map(tab => (
           <button
             key={tab}
+            id={`tab-${tab.toLowerCase()}`}
             onClick={() => setActiveTab(tab)}
             className={`flex-1 py-4 text-xs md:text-sm font-bold tracking-wide transition-colors ${
               activeTab === tab 

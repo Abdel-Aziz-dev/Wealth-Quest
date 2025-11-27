@@ -91,6 +91,39 @@ const TRANSLATIONS: Record<LanguageCode, any> = {
         borrowed: "Borrowed: {debt} (+{amt})",
         debtPayments: "Debt Payments: {details}",
         overdraft: "Warning: Overdraft! High stress."
+    },
+    tutorial: {
+        welcome_title: "Welcome, Wealth Builder! 🚀",
+        welcome_desc: "Your journey to financial freedom starts here. Let's create your strategy.",
+        lang_title: "Polyglot Mode 🗣️",
+        lang_desc: "Prefer a different language? Click here to switch between 6 different languages.",
+        currency_title: "Money Changer 💱",
+        currency_desc: "Play in your local currency. We handle the exchange rates automatically.",
+        stats_title: "Vital Signs 📊",
+        stats_desc: "Keep your eye on the prize. Your goal is to increase Net Worth while keeping Cash positive and Debt low.",
+        chart_title: "The Long Game 📈",
+        chart_desc: "This chart tracks your progress over the years. Watch it grow (hopefully) as you invest and save!",
+        cashflow_title: "Cashflow is King 💸",
+        cashflow_desc: "This shows exactly how much money you keep every month after expenses. If this is red, you're in trouble!",
+        advance_title: "Time Travel ⏳",
+        advance_desc: "Click this button to advance 1 month. You'll get paid, bills will be deducted, and investments will grow.",
+        actions_title: "Command Center ⚡",
+        actions_desc: "This is where you make moves. You have 4 main areas to manage.",
+        tab_career_title: "Career Ladder 💼",
+        tab_career_desc: "View your current job and requirements for promotion. Higher income = faster wealth.",
+        tab_debt_title: "Debt Crusher 💳",
+        tab_debt_desc: "Manage loans here. High-interest debt destroys wealth. Pay it off fast!",
+        tab_invest_title: "Asset Market 🏦",
+        tab_invest_desc: "Buy Stocks, Bonds, or Crypto. Assets put money in your pocket via growth and dividends.",
+        tab_skills_title: "Skill Tree 🧠",
+        tab_skills_desc: "Spend XP (Financial IQ) to learn skills. Skills unlock better jobs and improve investment returns.",
+        advisor_title: "AI Coach 🧠",
+        advisor_desc: "Stuck? Need a strategy? Click here to chat with your personal AI Financial Advisor anytime.",
+        finish_title: "You're Ready! 🎉",
+        finish_desc: "Here is a $500 bonus to kickstart your journey. Good luck!",
+        next: "Next",
+        finish: "Collect Reward",
+        skip: "Skip Tutorial"
     }
   },
   pt: {
@@ -183,6 +216,35 @@ const TRANSLATIONS: Record<LanguageCode, any> = {
         borrowed: "Empréstimo: {debt} (+{amt})",
         debtPayments: "Pag. Dívidas: {details}",
         overdraft: "Aviso: Cheque Especial! Estresse alto."
+    },
+    tutorial: {
+        welcome_title: "Bem-vindo! 🚀",
+        welcome_desc: "Sua jornada para a liberdade financeira começa aqui. Vamos aprender como jogar.",
+        stats_title: "Sinais Vitais 📊",
+        stats_desc: "Fique de olho nos seus números. Aumente seu Patrimônio enquanto mantém o Caixa positivo.",
+        chart_title: "Longo Prazo 📈",
+        chart_desc: "Este gráfico mostra seu progresso. Veja-o crescer conforme você investe!",
+        cashflow_title: "Fluxo de Caixa 💸",
+        cashflow_desc: "Isso mostra quanto dinheiro sobra todo mês. Se estiver vermelho, cuidado!",
+        advance_title: "Viajar no Tempo ⏳",
+        advance_desc: "Clique para avançar 1 mês. Você receberá salário e pagará contas.",
+        actions_title: "Central de Comando ⚡",
+        actions_desc: "Aqui você gerencia sua carreira, dívidas, investimentos e habilidades.",
+        tab_career_title: "Carreira 💼",
+        tab_career_desc: "Veja seu emprego atual e requisitos para promoção. Renda maior = riqueza mais rápida.",
+        tab_debt_title: "Dívidas 💳",
+        tab_debt_desc: "Gerencie empréstimos aqui. Dívidas de juros altos destroem riqueza. Pague rápido!",
+        tab_invest_title: "Investimentos 🏦",
+        tab_invest_desc: "Compre Ações, Títulos ou Cripto. Ativos colocam dinheiro no seu bolso.",
+        tab_skills_title: "Habilidades 🧠",
+        tab_skills_desc: "Gaste XP para aprender habilidades. Elas desbloqueiam melhores empregos.",
+        advisor_title: "Coach IA 🧠",
+        advisor_desc: "Precisa de ajuda? Clique aqui para conversar com seu consultor financeiro IA.",
+        finish_title: "Tudo Pronto! 🎉",
+        finish_desc: "Aqui está um bônus de $500 para começar. Boa sorte!",
+        next: "Próximo",
+        finish: "Pegar Recompensa",
+        skip: "Pular"
     }
   },
   es: {
@@ -275,6 +337,35 @@ const TRANSLATIONS: Record<LanguageCode, any> = {
         borrowed: "Prestado: {debt} (+{amt})",
         debtPayments: "Pagos Deuda: {details}",
         overdraft: "Aviso: ¡Sobregiro! Alto estrés."
+    },
+    tutorial: {
+        welcome_title: "¡Bienvenido! 🚀",
+        welcome_desc: "Tu viaje hacia la libertad financiera comienza aquí.",
+        stats_title: "Signos Vitales 📊",
+        stats_desc: "Vigila tu Patrimonio y mantén el Efectivo positivo.",
+        chart_title: "Largo Plazo 📈",
+        chart_desc: "Este gráfico rastrea tu progreso a lo largo de los años.",
+        cashflow_title: "Flujo de Caja 💸",
+        cashflow_desc: "Muestra cuánto dinero te queda cada mes. ¡Evita los números rojos!",
+        advance_title: "Viaje en el Tiempo ⏳",
+        advance_desc: "Avanza 1 mes para recibir tu salario y pagar facturas.",
+        actions_title: "Centro de Mando ⚡",
+        actions_desc: "Aquí gestionas tu carrera, deudas e inversiones.",
+        tab_career_title: "Carrera 💼",
+        tab_career_desc: "Mira los requisitos para ascender. Más ingresos = más riqueza.",
+        tab_debt_title: "Deudas 💳",
+        tab_debt_desc: "Gestiona préstamos. Las deudas altas destruyen riqueza.",
+        tab_invest_title: "Inversiones 🏦",
+        tab_invest_desc: "Compra acciones o bonos. Los activos ponen dinero en tu bolsillo.",
+        tab_skills_title: "Habilidades 🧠",
+        tab_skills_desc: "Usa XP para aprender habilidades y desbloquear mejores empleos.",
+        advisor_title: "Coach IA 🧠",
+        advisor_desc: "¿Atascado? Habla con tu asesor financiero IA.",
+        finish_title: "¡Listo! 🎉",
+        finish_desc: "Aquí tienes un bono de $500 para empezar.",
+        next: "Siguiente",
+        finish: "Recoger Recompensa",
+        skip: "Saltar"
     }
   },
   de: {
@@ -367,6 +458,35 @@ const TRANSLATIONS: Record<LanguageCode, any> = {
         borrowed: "Geliehen: {debt} (+{amt})",
         debtPayments: "Schuldenzahlungen: {details}",
         overdraft: "Warnung: Dispo! Hoher Stress."
+    },
+    tutorial: {
+        welcome_title: "Willkommen! 🚀",
+        welcome_desc: "Ihre Reise zur finanziellen Freiheit beginnt hier.",
+        stats_title: "Vitalwerte 📊",
+        stats_desc: "Behalten Sie Ihr Reinvermögen im Auge.",
+        chart_title: "Langzeit 📈",
+        chart_desc: "Dieses Diagramm verfolgt Ihren Fortschritt.",
+        cashflow_title: "Cashflow 💸",
+        cashflow_desc: "Zeigt, wie viel Geld jeden Monat übrig bleibt.",
+        advance_title: "Zeitreise ⏳",
+        advance_desc: "Klicken Sie hier, um 1 Monat vorzuspulen.",
+        actions_title: "Kommandozentrale ⚡",
+        actions_desc: "Verwalten Sie hier Karriere, Schulden und Investitionen.",
+        tab_career_title: "Karriere 💼",
+        tab_career_desc: "Prüfen Sie Anforderungen für Beförderungen.",
+        tab_debt_title: "Schulden 💳",
+        tab_debt_desc: "Managen Sie Kredite. Hohe Zinsen sind Gift.",
+        tab_invest_title: "Investieren 🏦",
+        tab_invest_desc: "Kaufen Sie Aktien oder Anleihen für Wachstum.",
+        tab_skills_title: "Skills 🧠",
+        tab_skills_desc: "Lernen Sie Skills für bessere Jobs.",
+        advisor_title: "KI-Coach 🧠",
+        advisor_desc: "Stecken Sie fest? Fragen Sie Ihren KI-Finanzberater.",
+        finish_title: "Bereit! 🎉",
+        finish_desc: "Hier ist ein $500 Bonus für den Start.",
+        next: "Weiter",
+        finish: "Belohnung",
+        skip: "Überspringen"
     }
   },
   jp: {
@@ -459,6 +579,35 @@ const TRANSLATIONS: Record<LanguageCode, any> = {
         borrowed: "借入: {debt} (+{amt})",
         debtPayments: "借金返済: {details}",
         overdraft: "警告: 当座貸越！ストレス増。"
+    },
+    tutorial: {
+        welcome_title: "ようこそ！ 🚀",
+        welcome_desc: "経済的自由への旅が始まります。",
+        stats_title: "重要指標 📊",
+        stats_desc: "純資産と現金のバランスに注目しましょう。",
+        chart_title: "長期視点 📈",
+        chart_desc: "資産の成長をこのグラフで確認できます。",
+        cashflow_title: "キャッシュフロー 💸",
+        cashflow_desc: "毎月の手取り額です。赤字にならないように！",
+        advance_title: "時間経過 ⏳",
+        advance_desc: "1ヶ月進めて、給料を受け取りましょう。",
+        actions_title: "司令室 ⚡",
+        actions_desc: "キャリア、借金、投資はここで管理します。",
+        tab_career_title: "キャリア 💼",
+        tab_career_desc: "昇進条件を確認しましょう。",
+        tab_debt_title: "借金 💳",
+        tab_debt_desc: "高金利の借金は資産形成の敵です。",
+        tab_invest_title: "投資 🏦",
+        tab_invest_desc: "株や債券を買って資産を増やしましょう。",
+        tab_skills_title: "スキル 🧠",
+        tab_skills_desc: "IQを高めて高収入の職に就きましょう。",
+        advisor_title: "AIコーチ 🧠",
+        advisor_desc: "困ったらAIアドバイザーに相談しましょう。",
+        finish_title: "準備完了！ 🎉",
+        finish_desc: "開始ボーナス$500をプレゼントします。",
+        next: "次へ",
+        finish: "報酬を受け取る",
+        skip: "スキップ"
     }
   },
   fr: {
@@ -551,6 +700,35 @@ const TRANSLATIONS: Record<LanguageCode, any> = {
         borrowed: "Emprunté: {debt} (+{amt})",
         debtPayments: "Paiements Dettes: {details}",
         overdraft: "Alerte: Découvert ! Stress élevé."
+    },
+    tutorial: {
+        welcome_title: "Bienvenue ! 🚀",
+        welcome_desc: "Votre voyage vers la liberté financière commence ici.",
+        stats_title: "Signes Vitaux 📊",
+        stats_desc: "Surveillez votre Valeur Nette et votre Cash.",
+        chart_title: "Long Terme 📈",
+        chart_desc: "Ce graphique suit votre progression.",
+        cashflow_title: "Cashflow 💸",
+        cashflow_desc: "Montre combien il vous reste chaque mois.",
+        advance_title: "Avancer ⏳",
+        advance_desc: "Cliquez pour avancer d'un mois et être payé.",
+        actions_title: "Centre de Commande ⚡",
+        actions_desc: "Gérez carrière, dettes et investissements ici.",
+        tab_career_title: "Carrière 💼",
+        tab_career_desc: "Visez la promotion.",
+        tab_debt_title: "Dettes 💳",
+        tab_debt_desc: "Éliminez les prêts toxiques.",
+        tab_invest_title: "Investir 🏦",
+        tab_invest_desc: "Faites travailler votre argent.",
+        tab_skills_title: "Compétences 🧠",
+        tab_skills_desc: "Apprenez pour gagner plus.",
+        advisor_title: "Coach IA 🧠",
+        advisor_desc: "Bloqué ? Parlez à votre conseiller IA.",
+        finish_title: "C'est Parti ! 🎉",
+        finish_desc: "Voici un bonus de 500 $ pour commencer.",
+        next: "Suivant",
+        finish: "Récompense",
+        skip: "Passer"
     }
   }
 };
@@ -562,10 +740,25 @@ export const t = (lang: LanguageCode, path: string | string[], params?: Record<s
   
   for (const key of keys) {
     if (current[key] === undefined) {
-      console.warn(`Missing translation: ${keys.join('.')} in ${lang}`);
-      return keys.join('.'); // Fallback to key
+      // Fallback to English if key is missing in selected lang
+      let fallback = TRANSLATIONS['en'];
+      for (const fKey of keys) {
+          if (fallback && fallback[fKey] !== undefined) {
+              fallback = fallback[fKey];
+          } else {
+              fallback = null;
+              break;
+          }
+      }
+      if (fallback) {
+          current = fallback;
+      } else {
+          console.warn(`Missing translation: ${keys.join('.')} in ${lang}`);
+          return keys.join('.'); 
+      }
+    } else {
+        current = current[key];
     }
-    current = current[key];
   }
 
   let result = current as string;

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GameState, Currency, LanguageCode } from '../types';
 import { getFinancialAdvice, analyzeReceipt, searchFinancialNews } from '../services/geminiService';
+import { formatCurrency } from '../services/gameEngine';
 
 interface Props {
   state: GameState;
@@ -103,9 +104,8 @@ export const Advisor: React.FC<Props> = ({ state, currency, lang }) => {
         const result = await analyzeReceipt(base64String);
         setLoading(false);
         if (result && result.total) {
-             // Basic naive conversion for receipt logging
-             const convertedTotal = (result.total * currency.rate).toFixed(0);
-             setMessages(prev => [...prev, { role: 'ai', text: `🧾 **Receipt Analyzed**\nCategory: ${result.category}\nTotal: **${currency.symbol}${convertedTotal}**\n\n(Note: In a full game loop, this would automatically be deducted from your cash!)` }]);
+             const formattedTotal = formatCurrency(result.total, currency);
+             setMessages(prev => [...prev, { role: 'ai', text: `🧾 **Receipt Analyzed**\nCategory: ${result.category}\nTotal: **${formattedTotal}**\n\n(Note: In a full game loop, this would automatically be deducted from your cash!)` }]);
         } else {
              setMessages(prev => [...prev, { role: 'ai', text: `Couldn't read that receipt clearly. Try another image!` }]);
         }
@@ -124,6 +124,7 @@ export const Advisor: React.FC<Props> = ({ state, currency, lang }) => {
   if (!isOpen) {
     return (
       <button 
+        id="tutorial-advisor-btn"
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full shadow-[0_0_25px_rgba(37,99,235,0.6)] flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 text-white border-2 border-white/20 group"
       >

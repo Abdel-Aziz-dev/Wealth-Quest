@@ -29,7 +29,7 @@ export const Dashboard: React.FC<Props> = ({ state, onAdvance, currency, lang })
   return (
     <div className="space-y-6">
       {/* Header Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div id="tutorial-stats" className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-game-card p-4 rounded-xl border border-slate-700 shadow-lg">
           <p className="text-slate-400 text-xs uppercase font-bold tracking-wider">{t(lang, 'app.netWorth')}</p>
           <p className={`text-2xl font-bold ${state.netWorth < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
@@ -58,11 +58,13 @@ export const Dashboard: React.FC<Props> = ({ state, onAdvance, currency, lang })
       </div>
 
       {/* Main Graph - Replaced with enhanced WealthChart */}
-      <WealthChart history={state.history.netWorth} currency={currency} lang={lang} />
+      <div id="tutorial-chart">
+        <WealthChart history={state.history.netWorth} currency={currency} lang={lang} />
+      </div>
 
       {/* Cashflow & Next Turn */}
       <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex-1 bg-game-card p-6 rounded-xl border border-slate-700">
+        <div id="tutorial-cashflow" className="flex-1 bg-game-card p-6 rounded-xl border border-slate-700">
             <h3 className="text-slate-300 font-semibold mb-4">{t(lang, 'dashboard.monthlyCashflow')}</h3>
             <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm">
@@ -90,6 +92,7 @@ export const Dashboard: React.FC<Props> = ({ state, onAdvance, currency, lang })
         </div>
 
         <button 
+            id="tutorial-next-btn"
             onClick={onAdvance}
             className="flex-1 bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all text-white font-bold text-xl rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center py-6 md:py-0 group"
         >

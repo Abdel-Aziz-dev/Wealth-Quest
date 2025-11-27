@@ -97,6 +97,8 @@ export interface GameState {
     wants: number; // 30%
     savings: number; // 20%
   };
+
+  tutorialCompleted: boolean;
 }
 
 export const INITIAL_STATE: GameState = {
@@ -135,5 +137,6 @@ export const INITIAL_STATE: GameState = {
     needs: 50,
     wants: 30,
     savings: 20
-  }
+  },
+  tutorialCompleted: false
 };

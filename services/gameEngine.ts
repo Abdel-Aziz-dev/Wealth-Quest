@@ -7,7 +7,8 @@ const formatterCache = new Map<string, Intl.NumberFormat>();
 
 export const formatCurrency = (val: number, currency: Currency) => {
     // Convert base value (USD) to target currency
-    const converted = val * currency.rate;
+    // Use || 0 to prevent NaN/undefined propagation
+    const converted = (val || 0) * currency.rate;
     
     // Create distinct cache key based on currency properties
     const key = `${currency.locale}-${currency.code}-${currency.decimals}`;
@@ -19,6 +20,25 @@ export const formatCurrency = (val: number, currency: Currency) => {
             currency: currency.code,
             minimumFractionDigits: currency.decimals,
             maximumFractionDigits: currency.decimals,
+        });
+        formatterCache.set(key, formatter);
+    }
+    
+    return formatter.format(converted);
+};
+
+export const formatCompactCurrency = (val: number, currency: Currency) => {
+    const converted = (val || 0) * currency.rate;
+    // Cache key for compact notation
+    const key = `compact-${currency.locale}-${currency.code}`;
+    
+    let formatter = formatterCache.get(key);
+    if (!formatter) {
+        formatter = new Intl.NumberFormat(currency.locale, {
+            style: 'currency',
+            currency: currency.code,
+            notation: 'compact',
+            maximumFractionDigits: 1
         });
         formatterCache.set(key, formatter);
     }

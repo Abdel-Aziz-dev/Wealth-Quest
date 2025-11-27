@@ -53,12 +53,31 @@ export const getFinancialAdvice = async (
 ) => {
   try {
     const gameStateContext = buildContext(state, currency);
+
+    // Determine Stage for Prompt Context to inject personality
+    let stage = "Early Career";
+    let personaGuide = "You are an enthusiastic mentor helping a newbie get started. Be high energy and encouraging.";
+    
+    // Thresholds adjusted loosely for game balance (USD base)
+    if (state.netWorth < 0 || state.cash < 500) {
+        stage = "Survival Mode";
+        personaGuide = "You are a crisis manager. Be direct, urgent, but reassuring. Focus strictly on cutting costs and paying high-interest debt to avoid bankruptcy.";
+    } else if (state.netWorth > 1000000) {
+        stage = "Financial Freedom";
+        personaGuide = "You are a wealthy sage. Be sophisticated, calm, and focus on legacy, charity, and optimization. Celebrate their massive success.";
+    } else if (state.netWorth > 100000) {
+        stage = "Wealth Building";
+        personaGuide = "You are a strategic portfolio manager. Focus on asset allocation, risk management, and long-term growth.";
+    }
     
     const response = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
       contents: `
         System: You are the "Wealth Quest Guide", a smart financial coach inside a game.
         Your goal is to help the player maximize their Net Worth and Financial IQ (XP).
+
+        CURRENT STAGE: ${stage}
+        PERSONA: ${personaGuide}
         
         GAME MECHANICS KNOWLEDGE:
         - **XP (Financial IQ)**: Used to buy Skills and get promoted. Gained by saving >20% of income.
@@ -77,11 +96,11 @@ export const getFinancialAdvice = async (
         ${gameStateContext}
 
         INSTRUCTIONS:
-        1. Keep it conversational but concise (max 3-4 sentences).
-        2. **Prioritize logic**: If they have high-interest debt (>10%), tell them to pay it before investing.
-        3. **Specifics**: Mention exact skill names or job titles from the context.
-        4. **Tone**: Encouraging, smart, using emojis. 
-        5. Format: Use **bold** for key terms or numbers.
+        1. **Personality**: Use a wide range of expressive emojis relevant to the specific advice (e.g., 📉 for debt, 🚀 for promotion, 🧘 for patience, 🎢 for volatility, 🦅 for freedom).
+        2. **Tone**: Strictly match the "${stage}" persona defined above.
+        3. **Logic**: If they have high-interest debt (>10%), ALWAYS prioritize telling them to pay it off before investing.
+        4. **Brevity**: Keep it under 4 sentences.
+        5. **Formatting**: Use **bold** for numbers and key terms.
         
         User Query: "${query}"
       `,

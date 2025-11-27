@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, ReferenceLine, CartesianGrid } from 'recharts';
 import { Currency, LanguageCode } from '../types';
-import { formatCurrency } from '../services/gameEngine';
+import { formatCurrency, formatCompactCurrency } from '../services/gameEngine';
 import { t } from '../services/i18n';
 
 interface HistoryPoint {
@@ -51,12 +51,7 @@ export const WealthChart: React.FC<Props> = ({ history, currency, lang }) => {
   const off = gradientOffset();
 
   const formatAxis = (val: number) => {
-    // Convert first
-    const converted = val * currency.rate;
-    if (converted === 0) return currency.symbol + '0';
-    if (Math.abs(converted) >= 1000000) return `${currency.symbol}${(converted / 1000000).toFixed(1)}M`;
-    if (Math.abs(converted) >= 1000) return `${currency.symbol}${(converted / 1000).toFixed(0)}k`;
-    return `${currency.symbol}${converted.toFixed(0)}`;
+    return formatCompactCurrency(val, currency);
   };
 
   const formatTooltip = (val: number) => formatCurrency(val, currency);
