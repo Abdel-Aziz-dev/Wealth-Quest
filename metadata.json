@@ -1,0 +1,8 @@
+{
+  "name": "Wealth Quest",
+  "description": "A gamified personal finance simulator where you build wealth, manage budgets, and learn real-world financial skills. AI Powered personalized financial advice and analysis.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
